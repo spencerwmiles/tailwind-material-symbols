@@ -1,7 +1,7 @@
 {
   "name": "@spencerwmiles/tailwind-material-symbols",
-  "version": "0.0.1",
-  "description": "Material Symbols specific Tailwind CSS v4 utilities. Builds on @spencerwmiles/tailwind-font-variations to provide icon-optimized utilities for Google's Material Symbols.",
+  "version": "0.0.2",
+  "description": "Tailwind CSS v4 utilities for Google's Material Symbols variable font. Compatible with tailwind-merge.",
   "main": "src/material-symbols.css",
   "style": "src/material-symbols.css",
   "files": [
@@ -20,12 +20,13 @@
     "variable-fonts",
     "css",
     "tailwind-v4",
-    "material-icons"
+    "material-icons",
+    "tailwind-merge"
   ],
   "author": "Spencer W. Miles <7152222+spencerwmiles@users.noreply.github.com>",
   "license": "MIT",
   "dependencies": {
-    "@spencerwmiles/tailwind-font-variations": "^0.0.2",
+    "@spencerwmiles/tailwind-font-variations": "^0.0.3",
     "material-symbols": "^0.31.3"
   },
   "peerDependencies": {
