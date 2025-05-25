@@ -1,0 +1,190 @@
+/**
+ * Material Symbols Tailwind CSS v4 Plugin
+ * 
+ * Builds on @spencerwmiles/tailwind-font-variations to provide Material Symbols specific utilities.
+ * 
+ * Features:
+ * - Material Symbols font family utilities
+ * - Icon-specific FILL axis (binary for Material Symbols)  
+ * - Optimized size utilities for icons
+ * - Base Material Symbols component utilities
+ * 
+ * Material Symbols supports 4 variable font axes:
+ * - FILL (0-1): Filled vs outlined
+ * - wght (100-700): Font weight  
+ * - GRAD (-25 to 200): Grade/emphasis
+ * - opsz (20-48): Optical sizing
+ */
+
+@import '@spencerwmiles/tailwind-font-variations';
+@import 'material-symbols';
+
+/* Material Symbols specific theme values */
+@theme {
+  /* Material Symbols font families */
+  --font-family-material-symbols-outlined: 'Material Symbols Outlined';
+  --font-family-material-symbols-rounded: 'Material Symbols Rounded';
+  --font-family-material-symbols-sharp: 'Material Symbols Sharp';
+
+  /* Material Symbols FILL axis - Binary for icons */
+  --ms-fill-outline: 0;
+  --ms-fill-filled: 1;
+
+  /* Icon-optimized sizes with corresponding optical sizes */
+  --ms-size-xs: 16px;
+  --ms-size-sm: 20px;
+  --ms-size-base: 24px;
+  --ms-size-lg: 28px;
+  --ms-size-xl: 32px;
+  --ms-size-2xl: 36px;
+  --ms-size-3xl: 40px;
+  --ms-size-4xl: 44px;
+  --ms-size-5xl: 48px;
+  --ms-size-6xl: 56px;
+  --ms-size-7xl: 64px;
+  --ms-size-8xl: 72px;
+  --ms-size-9xl: 96px;
+
+  /* Default Material Symbols variable font settings */
+  --ms-fill-default: 0;
+  --ms-wght-default: 400;
+  --ms-grad-default: 0;
+  --ms-opsz-default: 24;
+}
+
+/* ===== BASE MATERIAL SYMBOLS COMPONENT ===== */
+
+/* Base Material Symbols - defaults to Outlined with standard settings */
+@utility font-ms {
+  --font-family: var(--font-family-material-symbols-outlined);
+  --ms-fill: var(--ms-fill-default);
+  --font-var-wght: var(--ms-wght-default);
+  --font-var-GRAD: var(--ms-grad-default);
+  --font-var-opsz: var(--ms-opsz-default);
+  
+  font-family: var(--font-family);
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+  font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  -moz-osx-font-smoothing: grayscale;
+  font-variation-settings: 
+    "FILL" var(--ms-fill),
+    "wght" var(--font-var-wght),
+    "GRAD" var(--font-var-GRAD),
+    "opsz" var(--font-var-opsz);
+}
+
+/* ===== MATERIAL SYMBOLS FONT FAMILIES ===== */
+
+@utility font-ms-outlined {
+  --font-family: var(--font-family-material-symbols-outlined);
+}
+
+@utility font-ms-rounded {
+  --font-family: var(--font-family-material-symbols-rounded);
+}
+
+@utility font-ms-sharp {
+  --font-family: var(--font-family-material-symbols-sharp);
+}
+
+/* ===== MATERIAL SYMBOLS FILL AXIS (ICON-SPECIFIC) ===== */
+
+/* Binary FILL for Material Symbols icons - uses variable approach */
+@utility font-ms-fill {
+  --ms-fill: var(--ms-fill-filled);
+}
+
+@utility font-ms-outline {
+  --ms-fill: var(--ms-fill-outline);
+}
+
+/* Arbitrary fill values for edge cases */
+@utility font-ms-fill-* {
+  --ms-fill: --value(--ms-fill-*, number, [number]);
+}
+
+/* ===== ICON-OPTIMIZED SIZE UTILITIES ===== */
+
+/* Sizes with automatically optimized optical sizing for icons */
+@utility font-ms-xs {
+  --font-var-opsz: 20;
+  font-size: var(--ms-size-xs);
+}
+
+@utility font-ms-sm {
+  --font-var-opsz: 20;
+  font-size: var(--ms-size-sm);
+}
+
+@utility font-ms-base {
+  --font-var-opsz: 24;
+  font-size: var(--ms-size-base);
+}
+
+@utility font-ms-lg {
+  --font-var-opsz: 24;
+  font-size: var(--ms-size-lg);
+}
+
+@utility font-ms-xl {
+  --font-var-opsz: 32;
+  font-size: var(--ms-size-xl);
+}
+
+@utility font-ms-2xl {
+  --font-var-opsz: 36;
+  font-size: var(--ms-size-2xl);
+}
+
+@utility font-ms-3xl {
+  --font-var-opsz: 40;
+  font-size: var(--ms-size-3xl);
+}
+
+@utility font-ms-4xl {
+  --font-var-opsz: 44;
+  font-size: var(--ms-size-4xl);
+}
+
+@utility font-ms-5xl {
+  --font-var-opsz: 48;
+  font-size: var(--ms-size-5xl);
+}
+
+@utility font-ms-6xl {
+  --font-var-opsz: 48;
+  font-size: var(--ms-size-6xl);
+}
+
+@utility font-ms-7xl {
+  --font-var-opsz: 48;
+  font-size: var(--ms-size-7xl);
+}
+
+@utility font-ms-8xl {
+  --font-var-opsz: 48;
+  font-size: var(--ms-size-8xl);
+}
+
+@utility font-ms-9xl {
+  --font-var-opsz: 48;
+  font-size: var(--ms-size-9xl);
+}
+
+/* ===== MATERIAL SYMBOLS TRANSITIONS ===== */
+
+/* Add font-variation-settings to Tailwind's transition property system */
+@utility transition-fonts {
+  --transition-property: font-variation-settings;
+} 
