@@ -41,7 +41,7 @@
     "FILL" var(--symbol-fill, var(--symbol-fill-default, 1)),
     "wght" var(--variation-setting-wght, 400),
     "GRAD" var(--variation-setting-GRAD, 0),
-    "opsz" var(--variation-setting-opsz, 24);
+    "opsz" var(--variation-setting-opsz, 24) !important;
 }
 
 /* ===== FILL VARIANTS ===== */

@@ -1,6 +1,6 @@
 {
   "name": "@spencerwmiles/tailwind-material-symbols",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Tailwind CSS v4 utilities for Google's Material Symbols variable font. Compatible with tailwind-merge.",
   "main": "src/all.css",
   "style": "src/all.css",
