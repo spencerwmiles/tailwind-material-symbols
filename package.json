@@ -1,11 +1,20 @@
 {
   "name": "@spencerwmiles/tailwind-material-symbols",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "Tailwind CSS v4 utilities for Google's Material Symbols variable font. Compatible with tailwind-merge.",
-  "main": "src/material-symbols.css",
-  "style": "src/material-symbols.css",
+  "main": "src/all.css",
+  "style": "src/all.css",
+  "exports": {
+    ".": "./src/all.css",
+    "./outlined.css": "./src/outlined.css",
+    "./rounded.css": "./src/rounded.css",
+    "./sharp.css": "./src/sharp.css"
+  },
   "files": [
-    "src/material-symbols.css",
+    "src/all.css",
+    "src/outlined.css",
+    "src/rounded.css",
+    "src/sharp.css",
     "README.md",
     "LICENSE"
   ],
@@ -27,17 +36,17 @@
   "license": "MIT",
   "dependencies": {
     "@spencerwmiles/tailwind-font-variations": "^0.0.3",
-    "material-symbols": "^0.31.3"
+    "material-symbols": "latest"
   },
   "peerDependencies": {
     "tailwindcss": "^4.0.0"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/spencerwmiles/tailwind-material-symbols.git"
+    "url": "git+https://github.com/spencerwmiles/tailwind-material-symbols.git"
   },
   "bugs": {
     "url": "https://github.com/spencerwmiles/tailwind-material-symbols/issues"
   },
   "homepage": "https://github.com/spencerwmiles/tailwind-material-symbols#readme"
-} 
+}

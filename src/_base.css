@@ -1,0 +1,55 @@
+/**
+ * Material Symbols Base Utilities
+ * 
+ * Common utilities shared across all Material Symbols variants.
+ * This file is imported by all variant-specific files to eliminate redundancy.
+ */
+
+@import '@spencerwmiles/tailwind-font-variations';
+
+@theme {
+  --symbol-fill-0: 0;
+  --symbol-fill-1: 1;
+  --symbol-fill-default: var(--symbol-fill-1);
+  
+  /* Default font family - can be overridden by consumers */
+  --font-family-material-symbols-default: 'Material Symbols Outlined';
+  
+  /* Individual variant definitions - available when all.css is imported */
+  --font-family-material-symbols-outlined: 'Material Symbols Outlined';
+  --font-family-material-symbols-rounded: 'Material Symbols Rounded';
+  --font-family-material-symbols-sharp: 'Material Symbols Sharp';
+}
+
+@utility symbol {
+  font-family: var(--font-family-material-symbols, var(--font-family-material-symbols-default));
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+  font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  -moz-osx-font-smoothing: grayscale;
+  font-variation-settings: 
+    "FILL" var(--symbol-fill, var(--symbol-fill-default, 1)),
+    "wght" var(--variation-setting-wght, 400),
+    "GRAD" var(--variation-setting-GRAD, 0),
+    "opsz" var(--variation-setting-opsz, 24);
+}
+
+/* ===== FILL VARIANTS ===== */
+
+@utility symbol-fill-1 {
+  --symbol-fill: var(--symbol-fill-1);
+}
+
+@utility symbol-fill-0 {
+  --symbol-fill: var(--symbol-fill-0);
+} 

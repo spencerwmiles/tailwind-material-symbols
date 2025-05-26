@@ -9,10 +9,10 @@ importers:
   .:
     dependencies:
       '@spencerwmiles/tailwind-font-variations':
-        specifier: file:../tailwind-font-variations
-        version: file:../tailwind-font-variations(tailwindcss@4.1.7)
+        specifier: ^0.0.3
+        version: 0.0.3(tailwindcss@4.1.7)
       material-symbols:
-        specifier: ^0.31.3
+        specifier: latest
         version: 0.31.3
       tailwindcss:
         specifier: ^4.0.0
@@ -20,8 +20,8 @@ importers:
 
 packages:
 
-  '@spencerwmiles/tailwind-font-variations@file:../tailwind-font-variations':
-    resolution: {directory: ../tailwind-font-variations, type: directory}
+  '@spencerwmiles/tailwind-font-variations@0.0.3':
+    resolution: {integrity: sha512-YYd0HC8vV+XoygM+bjnjbjy5Yx1yvMq9Rbl9ARB9a85CxaiBZPN1XKn2+JbtWIQjMSqagNL6pnAmIPFuBNALmQ==}
     peerDependencies:
       tailwindcss: ^4.0.0
 
@@ -33,7 +33,7 @@ packages:
 
 snapshots:
 
-  '@spencerwmiles/tailwind-font-variations@file:../tailwind-font-variations(tailwindcss@4.1.7)':
+  '@spencerwmiles/tailwind-font-variations@0.0.3(tailwindcss@4.1.7)':
     dependencies:
       tailwindcss: 4.1.7
 

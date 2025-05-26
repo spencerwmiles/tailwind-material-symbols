@@ -1,0 +1,25 @@
+/**
+ * Material Symbols Outlined - Tailwind CSS v4 Plugin
+ * 
+ * Provides utilities for Google's Material Symbols Outlined variable font.
+ * Compatible with tailwind-merge.
+ * 
+ * This import only includes the Outlined variant to minimize bundle size.
+ * 
+ * Based on Material Symbols by Google, packaged by @marella/material-symbols
+ * https://github.com/marella/material-symbols
+ * 
+ * Material Symbols supports 4 variable font axes:
+ * - FILL (0-1): Filled vs outlined (default: filled)
+ * - wght (100-700): Font weight  
+ * - GRAD (-25 to 200): Grade/emphasis
+ * - opsz (20-48): Optical sizing
+ */
+
+@import './_base.css';
+@import 'material-symbols/outlined.css';
+
+@theme {
+  --font-family-material-symbols-outlined: 'Material Symbols Outlined';
+  --font-family-material-symbols: var(--font-family-material-symbols-outlined);
+} 

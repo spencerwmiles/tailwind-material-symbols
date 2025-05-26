@@ -2,30 +2,54 @@
 
 Tailwind CSS v4 utilities for Google's Material Symbols variable font. Compatible with tailwind-merge.
 
+This package brings Google's Material Symbols design system to Tailwind CSS, built on top of the excellent [material-symbols](https://github.com/marella/material-symbols) package by [@marella](https://github.com/marella). The material-symbols package provides the latest variable icon fonts and optimized SVGs, automatically updating from Google's official releases to ensure you always have access to the newest icons.
+
 ## Installation
 
 ```bash
 npm install @spencerwmiles/tailwind-material-symbols
 ```
 
-This package automatically includes `@spencerwmiles/tailwind-font-variations` as a dependency.
+This package automatically includes two core dependencies:
+- `@spencerwmiles/tailwind-font-variations` - Provides variable font utilities
+- `material-symbols` - Provides the actual Material Symbols font files
 
 ## Setup
 
-Import in your main CSS file:
+### Full Package (All Variants)
+
+Import in your main CSS file to get all three font variants:
 
 ```css
 @import '@spencerwmiles/tailwind-material-symbols';
 ```
 
+### Specific Variants (Smaller Bundle Size)
+
+For better performance, import only the variant you need:
+
+```css
+/* Outlined only (most common) */
+@import '@spencerwmiles/tailwind-material-symbols/outlined.css';
+
+/* Rounded only */
+@import '@spencerwmiles/tailwind-material-symbols/rounded.css';
+
+/* Sharp only */
+@import '@spencerwmiles/tailwind-material-symbols/sharp.css';
+```
+
+**Recommendation**: Use specific imports in production to minimize bundle size. The outlined variant is the most commonly used.
+
 ## How It Works
 
-This package uses a **composition approach** with two complementary packages:
+This package uses a **composition approach** with three core packages:
 
 - **This package** (`tailwind-material-symbols`): Provides Material Symbols font families and the FILL axis
-- **Font variations package** (`tailwind-font-variations`): Provides weight, grade, and optical size utilities
+- **Font variations package** (`tailwind-font-variations`): Provides weight, grade, and optical size utilities  
+- **Material Symbols package** (`material-symbols`): Provides the actual font files from Google
 
-You combine utilities from both packages to create the exact symbol styling you need.
+You combine utilities from these packages to create the exact symbol styling you need.
 
 ## Usage
 
@@ -39,19 +63,37 @@ You combine utilities from both packages to create the exact symbol styling you 
 
 ### Font Variants
 
+When using the full package import, you can switch between variants:
+
 ```html
 <span class="symbol symbol-outlined">favorite</span>
 <span class="symbol symbol-rounded">favorite</span>
 <span class="symbol symbol-sharp">favorite</span>
 ```
 
+When using specific variant imports, the font is already set:
+
+```html
+<!-- With outlined.css import -->
+<span class="symbol">favorite</span>
+
+<!-- With rounded.css import -->
+<span class="symbol">favorite</span>
+
+<!-- With sharp.css import -->
+<span class="symbol">favorite</span>
+```
+
 ### Fill States (Material Symbols Specific)
 
 ```html
-<!-- Outlined (default) -->
+<!-- Filled (default) -->
 <span class="symbol">star</span>
 
-<!-- Filled -->
+<!-- Outlined -->
+<span class="symbol symbol-fill-0">star</span>
+
+<!-- Explicitly filled -->
 <span class="symbol symbol-fill-1">star</span>
 
 <!-- Partially filled -->
@@ -100,12 +142,12 @@ You combine utilities from both packages to create the exact symbol styling you 
 
 ```html
 <!-- Smooth fill transition -->
-<span class="symbol transition-font-variations duration-300 hover:symbol-fill-1">
+<span class="symbol symbol-fill-0 transition-font-variations duration-300 hover:symbol-fill-1">
   favorite
 </span>
 
 <!-- Multiple property transitions -->
-<span class="symbol transition-font-variations duration-200 hover:symbol-fill-1 hover:variation-setting-wght-700">
+<span class="symbol symbol-fill-0 transition-font-variations duration-200 hover:symbol-fill-1 hover:variation-setting-wght-700">
   star
 </span>
 ```
@@ -122,12 +164,79 @@ You combine utilities from both packages to create the exact symbol styling you 
 </span>
 ```
 
+## Customizing Defaults
+
+Override default symbol behavior using Tailwind v4's `@theme` directive. This works reliably across all import methods:
+
+### When Using Full Package (`all.css`)
+
+```css
+@import '@spencerwmiles/tailwind-material-symbols';
+
+@theme {
+  /* Change default fill (0 = outlined, 1 = filled) */
+  --symbol-fill-default: var(--symbol-fill-0);
+  
+  /* Change default font variant (applies to base symbol utility) */
+  --font-family-material-symbols-default: 'Material Symbols Rounded';
+}
+```
+
+With this setup:
+- `<span class="symbol">home</span>` → Uses Rounded variant (your new default)
+- `<span class="symbol symbol-outlined">home</span>` → Forces Outlined variant
+- `<span class="symbol symbol-sharp">home</span>` → Forces Sharp variant
+
+### When Using Specific Variants
+
+```css
+@import '@spencerwmiles/tailwind-material-symbols/rounded.css';
+
+@theme {
+  /* Only fill customization is relevant for specific imports */
+  --symbol-fill-default: var(--symbol-fill-0);
+}
+```
+
+### Available Default Variables
+
+```css
+@theme {
+  /* Fill defaults */
+  --symbol-fill-default: var(--symbol-fill-1); /* 1 = filled, 0 = outlined */
+  
+  /* Font family defaults (all.css only) */
+  --font-family-material-symbols-default: 'Material Symbols Outlined'; /* or Rounded/Sharp */
+  
+  /* Individual variant references (available in all imports) */
+  --font-family-material-symbols-outlined: 'Material Symbols Outlined';
+  --font-family-material-symbols-rounded: 'Material Symbols Rounded';
+  --font-family-material-symbols-sharp: 'Material Symbols Sharp';
+}
+```
+
+## Import Options
+
+### Full Package (`@import '@spencerwmiles/tailwind-material-symbols'`)
+- **Includes**: All three font variants (Outlined, Rounded, Sharp)
+- **Size**: Larger bundle (~3 font files)
+- **Use case**: When you need multiple variants or want maximum flexibility
+- **Utilities**: `symbol-outlined`, `symbol-rounded`, `symbol-sharp` for switching variants
+
+### Specific Variants (`@import '@spencerwmiles/tailwind-material-symbols/outlined.css'`)
+- **Includes**: Only the specified variant
+- **Size**: Smaller bundle (~1 font file)
+- **Use case**: Production apps where you know which variant you need
+- **Utilities**: No variant switching utilities (font is pre-set)
+
 ## Package Responsibilities
 
 ### This Package Provides:
-- `symbol` - Base Material Symbols component
-- `symbol-outlined/rounded/sharp` - Font family variants
-- `symbol-fill-*` - FILL axis (0-1, filled vs outlined)
+- `symbol` - Base Material Symbols component (filled by default)
+- `symbol-outlined/rounded/sharp` - Font family variants (full package only)
+- `symbol-fill-1` - Filled state (explicit)
+- `symbol-fill-0` - Outlined state
+- `symbol-fill-[value]` - Custom fill values (0-1)
 
 ### Font Variations Package Provides:
 - `variation-setting-wght-*` - Weight axis (100-900)
@@ -149,6 +258,8 @@ This **composition pattern** provides several benefits:
 ## Material Symbols Reference
 
 For available symbols, visit the [Material Symbols Library](https://fonts.google.com/icons?icon.set=Material+Symbols).
+
+
 
 ## License
 
